@@ -1,5 +1,6 @@
 // changes have been made here
 import { useSearchParams } from 'react-router-dom';
+import { BottomWarning } from '../components/BottomWarning';
 import axios from "axios";
 import { useState } from 'react';
 
@@ -26,7 +27,7 @@ export const SendMoney = () => {
             });
 
             // Display success message with transferred amount
-            setMessage(`${amount} transfer successful`);
+            setMessage(`${amount} Transfer Successfully!`);
         } catch (error) {
             setMessage("Transfer failed");
         }
@@ -85,32 +86,12 @@ export const SendMoney = () => {
                             </button>
                             {/* Display transfer message */}
                             {message && <p className="text-green-500 text-center mt-4">{message}</p>}
+                            <div><BottomWarning label={"back to dashboard"} buttonText={"Back"} to={"/dashboard"} /></div>
                         </div>
                     </div>
+                    
                 </div>
-                {/* <div className="fixed top-0 right-0 p-4">
-                    <h2 className="text-xl font-bold">View Balance</h2>
-                    <input
-                        onChange={(e) => setUsername(e.target.value)}
-                        type="email"
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm mb-2"
-                        placeholder="Enter username"
-                    />
-                    <input
-                        onChange={(e) => setPassword(e.target.value)}
-                        type="password"
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm mb-2"
-                        placeholder="Enter password"
-                    />
-                    <button
-                        onClick={handleViewBalance}
-                        className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-blue-500 text-white"
-                    >
-                        View Balance
-                    </button> */}
-                    {/* Display balance */}
-                    {/* {balance && <p className="text-blue-500 text-center mt-4">{balance}</p>}
-                </div> */}
+                 
             </div>
         </div>
     );

@@ -1,29 +1,8 @@
-import { BottomWarning } from "../components/BottomWarning"
-import { Button } from "../components/Button"
-import { Heading } from "../components/Heading"
-import { InputBox } from "../components/InputBox"
-import { SubHeading } from "../components/SubHeading"
-
-// export const Signin = () => {
-//     return <div className="bg-slate-300 h-screen flex justify-center">
-//     <div className="flex flex-col justify-center">
-//       <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
-//         <Heading label={"Sign in"} />
-//         <SubHeading label={"Enter your credentials to access your account"} />
-//         <InputBox placeholder="harkirat@gmail.com" label={"Email"} />
-//         <InputBox placeholder="123456" label={"Password"} />
-//         <div className="pt-4">
-//           <Button label={"Sign in"} />
-//         </div>
-//         <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />
-//       </div>
-//     </div>
-//   </div>
-// }
-
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export const Signin = () => {
   const [username, setUsername] = useState("");
@@ -31,34 +10,67 @@ export const Signin = () => {
   const navigate = useNavigate();
 
   const handleSignin = () => {
-    axios.post("http://localhost:3000/api/v1/user/signin", {
-      username,
-      password,
-    })
-    .then(response => {
-      localStorage.setItem("token", response.data.token); // Store token in localStorage
-      navigate("/dashboard"); // Redirect to dashboard after successful login
-    })
-    .catch(error => {
-      console.error("Error during sign-in", error);
-    });
+    axios
+      .post("http://localhost:3000/api/v1/user/signin", {
+        username,
+        password,
+      })
+      .then((response) => {
+        localStorage.setItem("token", response.data.token); // Store token in localStorage
+        navigate("/dashboard"); // Redirect to dashboard after successful login
+      })
+      .catch((error) => {
+        console.error("Error during sign-in", error);
+      });
   };
 
   return (
-    <div>
-      <input
-        type="email"
-        placeholder="Email"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleSignin}>Sign In</button>
+    <div className="flex items-center justify-center h-screen bg-gray-200 p-6">
+      <div className="container w-96 p-6 md:p-12 bg-gray-200 rounded-lg shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)]">
+        <h1 className="text-2xl md:text-5xl mb-4 md:mb-6 text-center font-bold">Sign In</h1>
+        <div className="icons flex justify-center items-center gap-4 mt-3">
+          <div className="icon cursor-pointer w-12 h-12 flex items-center justify-center p-2 rounded-full shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)] text-xl">
+            <i className="fa-brands fa-facebook-f"></i>
+          </div>
+          <div className="icon cursor-pointer w-12 h-12 flex items-center justify-center p-2 rounded-full shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)] text-xl">
+            <i className="fa-brands fa-whatsapp"></i>
+          </div>
+          <div className="icon cursor-pointer w-12 h-12 flex items-center justify-center p-2 rounded-full shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)] text-xl">
+            <i className="fa-brands fa-instagram"></i>
+          </div>
+          <div className="icon cursor-pointer w-12 h-12 flex items-center justify-center p-2 rounded-full shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)] text-xl">
+            <i className="fa-brands fa-google"></i>
+          </div>
+        </div>
+        <p className="mb-3 text-center mt-3 font-bold">or use your account</p>
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full mb-4 p-4 outline-none rounded-full bg-gray-200 shadow-[inset_7px_7px_10px_rgba(0,0,0,0.1),_inset_-7px_-7px_10px_white]"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full mb-6 p-4 outline-none rounded-full bg-gray-200 shadow-[inset_7px_7px_10px_rgba(0,0,0,0.1),_inset_-7px_-7px_10px_white]"
+          />
+          <div className="flex justify-center items-center mt-2">
+            <button
+              onClick={handleSignin}
+              className="w-44 h-12 rounded-full bg-blue-500 text-white hover:text-red-500 font-bold shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)]"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+        <h1 className="text-sm text-center font-bold mt-5 text-gray-400">
+          <span className="text-red-300">Note:-</span> Use Email & Password from which you make Account
+        </h1>
+      </div>
     </div>
   );
 };
