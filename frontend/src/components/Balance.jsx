@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Users } from "./Users";
 export const Balance = () => {
     const [balance, setBalance] = useState(null);
     const [firstName, setFirstName] = useState("");
@@ -52,6 +52,8 @@ export const Balance = () => {
                     <p className="text-lg">Your balance is <span className="font-bold">₹{balance.toFixed(2)}</span></p>
                 </div>
             </div>
+            
         </div>
+        
     );
 };

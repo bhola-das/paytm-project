@@ -1,7 +1,14 @@
 // backend/db.js
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect("mongodb+srv://bholadas858:wslWBresLmCXhall@cluster0.py9d4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+const mongoURI = process.env.MONGO_URI;
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB Connected Successfully"))
+.catch(err => console.log("MongoDB Connection Error:", err));
 
 // Create a Schema for Users
 const userSchema = new mongoose.Schema({

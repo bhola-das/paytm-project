@@ -7,6 +7,7 @@ const { User, Account } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const  { authMiddleware } = require("../middleware");
+const bcrypt = require('bcryptjs');
 
 const signupBody = zod.object({
     username: zod.string().email(),
@@ -33,9 +34,11 @@ router.post("/signup", async (req, res) => {
         })
     }
 
+   const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
     const user = await User.create({
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
     })
@@ -70,13 +73,13 @@ router.post("/signin", async (req, res) => {
         })
     }
 
-
     const user = await User.findOne({
         username: req.body.username,
-        password: req.body.password
     });
 
     if (user) {
+        const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+        if(isPasswordValid){
         const token = jwt.sign({
             userId: user._id
         }, JWT_SECRET);
@@ -85,6 +88,12 @@ router.post("/signin", async (req, res) => {
             token: token
         })
         return;
+    }
+    else {
+        return res.status(411).json({
+            message: "Invalid password"
+        });
+    }
     }
 
     
@@ -188,5 +197,20 @@ router.put("/update", authMiddleware, async (req, res) => {
         });
     }
 });
+
+router.get("/getUser", authMiddleware, async (req, res) => {
+    try {
+      const user = await User.findOne({
+        _id: req.userId,
+      });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+  
 
 module.exports = router;

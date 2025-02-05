@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 export const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userid,setuserid]=useState("");
   const navigate = useNavigate();
 
   const handleSignin = () => {
@@ -17,8 +19,9 @@ export const Signin = () => {
       })
       .then((response) => {
         localStorage.setItem("token", response.data.token); // Store token in localStorage
-        navigate("/dashboard"); // Redirect to dashboard after successful login
-      })
+        navigate('/dashboard'); // Redirect to dashboard after successful login
+      }
+    )
       .catch((error) => {
         console.error("Error during sign-in", error);
       });
@@ -71,6 +74,7 @@ export const Signin = () => {
           <span className="text-red-300">Note:-</span> Use Email & Password from which you make Account
         </h1>
       </div>
+      
     </div>
   );
 };

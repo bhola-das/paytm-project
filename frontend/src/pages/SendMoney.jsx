@@ -9,12 +9,11 @@ export const SendMoney = () => {
     const id = searchParams.get("id");
     const name = searchParams.get("name");
     const [amount, setAmount] = useState(0);
-    const [message, setMessage] = useState(""); // State to store transfer message
-    const [username, setUsername] = useState(""); // State for username input
-    const [password, setPassword] = useState(""); // State for password input
-    const [balance, setBalance] = useState(""); // State for balance display
+    const [message, setMessage] = useState(""); 
+    const [username, setUsername] = useState(""); 
+    const [password, setPassword] = useState(""); 
+    const [balance, setBalance] = useState(""); 
 
-    // Function to handle money transfer
     const handleTransfer = async () => {
         try {
             const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
@@ -51,7 +50,7 @@ export const SendMoney = () => {
     return (
         <div className="flex justify-center h-screen bg-gray-100">
             <div className="h-full flex flex-col justify-center">
-                <div className="border h-min text-card-foreground max-w-md p-4 space-y-8 w-96 bg-white shadow-lg rounded-lg">
+                <div className="border h-min text-card-foreground max-w-md p-4 space-y-8 w-75 md:w-96 bg-white shadow-lg rounded-lg">
                     <div className="flex flex-col space-y-1.5 p-6">
                         <h2 className="text-3xl font-bold text-center">Send Money</h2>
                     </div>
