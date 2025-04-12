@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(403).json({ message: "Authorization header missing or invalid" });
     }
-
+ 
     const token = authHeader.split(" ")[1]; // Extract token from the header
 
     try {

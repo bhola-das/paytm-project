@@ -57,6 +57,8 @@ router.post("/signup", async (req, res) => {
         message: "User created successfully",
         token: token
     })
+
+    res.status(200).send("signup page")
 })
 
 

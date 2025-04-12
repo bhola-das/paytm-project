@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Bearer:- the Authorization header includes a Bearer token, which is retrieved from localStorage.
+ This token acts as proof of authentication and is required to access protected routes,
+  such as fetching the user's account balance. The server verifies the token, and if
+   it's valid, it responds with the requested data. This approach ensures secure API
+    communication without needing to store session data on the server, making it a
+     stateless and efficient authentication mechanism." */

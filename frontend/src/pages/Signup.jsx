@@ -3,7 +3,6 @@ import { useState } from "react";
 import { BottomWarning } from "../components/BottomWarning";
 import { Button } from "../components/Button";
 import { Heading } from "../components/Heading";
-import { SubHeading } from "../components/SubHeading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -70,7 +69,7 @@ export const Signup = () => {
                                 password
                             });
                             localStorage.setItem("token", response.data.token);
-                            navigate("/dashboard");
+                            navigate("/signin");
                         }}
                         label={"Sign up"}
                         className="w-44 h-12 rounded-full bg-blue-500 text-white hover:text-red-500 font-bold shadow-[7px_7px_10px_white,-7px_-7px_10px_rgba(0,0,0,0.1)]"

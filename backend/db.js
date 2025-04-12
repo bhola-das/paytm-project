@@ -3,10 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const mongoURI = process.env.MONGO_URI;
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(mongoURI)
 .then(() => console.log("MongoDB Connected Successfully"))
 .catch(err => console.log("MongoDB Connection Error:", err));
 
