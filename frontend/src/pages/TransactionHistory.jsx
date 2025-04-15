@@ -7,7 +7,7 @@ export const TransactionHistory = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/account/transactions", {
+        const res = await axios.get("https://paytm-project-dxmq.onrender.com/api/v1/account/transactions", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }

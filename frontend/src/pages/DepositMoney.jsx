@@ -10,7 +10,7 @@ export const  DepositMoney=()=> {
   const handleDeposit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/account/deposit",
+        "https://paytm-project-dxmq.onrender.com/api/v1/account/deposit",
         { amount: Number(amount) },
         {
           headers: {

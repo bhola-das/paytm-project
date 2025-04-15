@@ -16,7 +16,7 @@ export const SendMoney = () => {
 
     const handleTransfer = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
+            const response = await axios.post("https://paytm-project-dxmq.onrender.com/api/v1/account/transfer", {
                 to: id,
                 amount
             }, {
@@ -35,7 +35,7 @@ export const SendMoney = () => {
     // Function to handle balance view
     const handleViewBalance = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/account/balance", {
+            const response = await axios.post("/api/v1/account/balance", {
                 username,
                 password
             });

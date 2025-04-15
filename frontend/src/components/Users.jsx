@@ -11,7 +11,7 @@ export const Users = () => {
     useEffect(() => {
         // Fetch the logged-in user details
         axios
-            .get("http://localhost:3000/api/v1/user/getUser", {
+            .get("https://paytm-project-dxmq.onrender.com/api/v1/user/getUser", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`, // Pass the token from localStorage
                 },
@@ -27,7 +27,7 @@ export const Users = () => {
     useEffect(() => {
         // Fetch the list of users
         axios
-            .get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`, {
+            .get(`https://paytm-project-dxmq.onrender.com/api/v1/user/bulk?filter=${filter}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`, // Pass the token from localStorage
                 },

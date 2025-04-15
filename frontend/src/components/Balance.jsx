@@ -14,7 +14,7 @@ export const Balance = () => {
         const fetchUserData = async () => {
             try {
                 const balanceResponse = await axios.get(
-                    "http://localhost:3000/api/v1/account/balance",
+                    "https://paytm-project-dxmq.onrender.com/api/v1/account/balance",
                     {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -23,7 +23,7 @@ export const Balance = () => {
                 );
 
                 const userResponse = await axios.get(
-                    "http://localhost:3000/api/v1/user/profile",
+                    "https://paytm-project-dxmq.onrender.com/api/v1/user/profile",
                     {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("token"),
